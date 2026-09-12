@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate a cryptographically secure 14-character password in your browser. Nothing is sent to a server.">
+  <meta name="color-scheme" content="light dark">
+  <title>Strong Password Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="card" aria-labelledby="app-title">
+    <header class="card__header">
+      <h1 id="app-title">Strong Password Generator</h1>
+      <p class="card__subtitle">
+        A fresh 14-character password, generated locally with your browser's
+        cryptographic random number generator. Nothing leaves this page.
+      </p>
+    </header>
+
+    <section class="output" aria-labelledby="password-label">
+      <label id="password-label" for="password">Your password</label>
+      <div class="output__row">
+        <input
+          id="password"
+          class="output__field"
+          type="text"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          aria-describedby="copy-status"
+          value=""
+        >
+        <button id="copy-btn" class="btn btn--secondary" type="button">
+          <span class="btn__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </span>
+          Copy Password
+        </button>
+      </div>
+      <!-- aria-live announces copy success/failure to screen readers -->
+      <p id="copy-status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <button id="generate-btn" class="btn btn--primary" type="button">
+      <span class="btn__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"></path>
+          <polyline points="21 3 21 9 15 9"></polyline>
+        </svg>
+      </span>
+      Generate Password
+    </button>
+
+    <section class="checklist" aria-labelledby="checklist-title">
+      <h2 id="checklist-title">Password requirements</h2>
+      <ul id="checklist" class="checklist__list">
+        <li data-rule="length"><span class="check" aria-hidden="true"></span>Exactly 14 characters</li>
+        <li data-rule="upper"><span class="check" aria-hidden="true"></span>At least one uppercase letter</li>
+        <li data-rule="lower"><span class="check" aria-hidden="true"></span>At least one lowercase letter</li>
+        <li data-rule="digit"><span class="check" aria-hidden="true"></span>At least one number</li>
+        <li data-rule="special"><span class="check" aria-hidden="true"></span>At least one special character</li>
+        <li data-rule="ambiguous"><span class="check" aria-hidden="true"></span>No ambiguous characters (O 0 I l 1 | `)</li>
+        <li data-rule="space"><span class="check" aria-hidden="true"></span>No spaces</li>
+        <li data-rule="pattern"><span class="check" aria-hidden="true"></span>No repeated (aaa) or sequential (abc, 123) patterns</li>
+      </ul>
+    </section>
+
+    <footer class="card__footer">
+      <p>Passwords are generated with <code>crypto.getRandomValues()</code> and never stored or transmitted.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
